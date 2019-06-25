@@ -1,0 +1,18 @@
+inherit_from: .rubocop_todo.yml
+
+# 自動生成されるものはチェック対象から除外する
+AllCops:
+# Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'app/helpers/application_helper.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+    - 'config/application.rb'
+    - 'bin/setup'
+    - 'bin/update'
+
+# Line is too long を無視
+Metrics/LineLength:
+  Enabled: false
