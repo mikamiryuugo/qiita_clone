@@ -16,3 +16,7 @@ AllCops:
 # Line is too long を無視
 Metrics/LineLength:
   Enabled: false
+
+# 文字列のデフォルトはダブルクオートに寄せ(文字列内の変数展開はダブルクオートしか対応しておらず、そのためにいちいち書き換えるのが面倒)
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
