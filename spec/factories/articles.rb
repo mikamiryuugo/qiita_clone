@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
-    title { "MyString" }
-    content { "MyText" }
-    user { nil }
+    title { Faker::Movie.quote }
+    content { Faker::Quote.famous_last_words }
+    user
   end
 end
