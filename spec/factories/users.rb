@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
     password { Faker::Internet.password(8) }
 
-    trait :with_article do
+    trait :with_articles do
       transient do
         article_count {5}
       end
