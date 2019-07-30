@@ -23,5 +23,12 @@ FactoryBot.define do
       end
     end
 
+    trait :with_article_like do
+      after(:create) do |user|
+        user_article = create(:article, user: user)
+        create(:article_like, user: user, article: user_article)
+      end
+    end
+
   end
 end
