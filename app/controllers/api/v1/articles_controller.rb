@@ -10,6 +10,13 @@ class Api::V1::ArticlesController < ApplicationController
     render json: article
   end
 
+  def update
+    article = current_user.find(params[:id])
+    article = article.assign_attributes(article_params)
+    article.save!
+    render json: article
+  end
+
   private
 
   def article_params
