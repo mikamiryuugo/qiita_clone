@@ -6,8 +6,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    article = current_user.articles.build(article_params)
-    article.save!
+    article = current_user.articles.create!(article_params)
     render json: article
   end
 
