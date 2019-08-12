@@ -11,9 +11,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def update
-    article = current_user.find(params[:id])
-    article = article.assign_attributes(article_params)
-    article.save!
+    article = current_user.articles.find(params[:id])
+    article.update!(article_params)
     render json: article
   end
 
