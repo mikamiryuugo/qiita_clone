@@ -22,11 +22,11 @@ RSpec.describe "Articles", type: :request do
       let(:params) { { article: attributes_for(:article) } }
 
       before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
-
-      it "articleのレコードが作成できる" do
-
-        expect { subject }.to change { current_user.articles.count }.by(1)
-        expect(response).to have_http_status(200)
+      context "自分の記事を作成するとき" do
+        it "articleのレコードが作成できる" do
+          expect { subject }.to change { current_user.articles.count }.by(1)
+          expect(response).to have_http_status(200)
+        end
       end
     end
 
@@ -38,10 +38,12 @@ RSpec.describe "Articles", type: :request do
       before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
       let(:params) { { article: attributes_for(:article) } }
 
-      it "articleのレコードが更新できる" do
-        expect { subject }.to change { Article.find(article.id).title }.from(article.title).to(params[:article][:title]) &
-                              change { Article.find(article.id).content }.from(article.content).to(params[:article][:content])
-        expect(response).to have_http_status(:ok)
+      context "自分の記事のレコードを更新しようとするとき" do
+        it "articleのレコードが更新できる" do
+          expect { subject }.to change { Article.find(article.id).title }.from(article.title).to(params[:article][:title]) &
+                                change { Article.find(article.id).content }.from(article.content).to(params[:article][:content])
+          expect(response).to have_http_status(:ok)
+        end
       end
     end
   end
