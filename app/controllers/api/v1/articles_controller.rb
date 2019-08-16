@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :set_article, only: [:update]
+  before_action :set_article, only: [:update, :destroy]
 
   def index
     articles = Article.all
@@ -14,6 +14,10 @@ class Api::V1::ArticlesController < ApplicationController
   def update
     @article.update!(article_params)
     render json: @article
+  end
+
+  def destroy
+    @article.destroy!
   end
 
   private
