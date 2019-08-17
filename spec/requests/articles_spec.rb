@@ -14,21 +14,20 @@ RSpec.describe "Articles", type: :request do
       res = JSON.parse(response.body).count
       expect(res).to eq article_count
     end
+  end
 
-    describe "POST /api/v1/articles" do
-      subject { post(api_v1_articles_path, params: params) }
+  describe "POST /api/v1/articles" do
+    subject { post(api_v1_articles_path, params: params) }
 
-      let(:current_user) { create(:user) }
-      let(:params) { { article: attributes_for(:article) } }
+    let(:current_user) { create(:user) }
+    let(:params) { { article: attributes_for(:article) } }
 
-      before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
+    before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
 
-      it "articleのレコードが作成できる" do
+    it "articleのレコードが作成できる" do
 
-        expect { subject }.to change { current_user.articles.count }.by(1)
-        expect(response).to have_http_status(200)
-      end
+      expect { subject }.to change { current_user.articles.count }.by(1)
+      expect(response).to have_http_status(200)
     end
-
   end
 end
