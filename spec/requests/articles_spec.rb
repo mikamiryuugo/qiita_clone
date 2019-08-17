@@ -30,4 +30,21 @@ RSpec.describe "Articles", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "PATCH /api/v1/articles/:id" do
+    subject { patch(api_v1_article_path(article.id), params: params) }
+
+    let(:article) { create(:article, user_id: current_user.id) }
+    let(:current_user) { create(:user) }
+    before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
+    let(:params) { { article: attributes_for(:article) } }
+
+    context "自分の記事のレコードを更新しようとするとき" do
+      it "articleのレコードが更新できる" do
+        expect { subject }.to change { Article.find(article.id).title }.from(article.title).to(params[:article][:title]) &
+                              change { Article.find(article.id).content }.from(article.content).to(params[:article][:content])
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
