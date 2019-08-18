@@ -16,6 +16,10 @@ class Api::V1::ArticlesController < ApplicationController
     render json: @article
   end
 
+  def destroy
+    @article.destroy!
+  end
+
   private
 
   def article_params
