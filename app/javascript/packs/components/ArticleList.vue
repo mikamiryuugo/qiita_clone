@@ -11,7 +11,7 @@
     }
 
     async fetchArticles(): Promise<void> {
-      await axios.get("/articles").then((response) => {
+      await axios.get("/api/v1/articles").then((response) => {
         response.data.map((article: any) => {
           this.articles.push(article);
         })
