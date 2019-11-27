@@ -27,5 +27,14 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do
         expect { subject }.to change { User.count }.by(0)
       end
     end
+
+    context "同一のアドレスが登録されている時" do
+      let!(:user) {create(:user)}
+      let(:params) { attributes_for(:user, email: user.email).slice(:name, :email, :password) }
+
+      it "Userのレコードが作成できない" do
+        expect { subject }.to change { User.count }.by(0)
+      end
+    end
   end
 end
