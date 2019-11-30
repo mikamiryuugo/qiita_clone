@@ -23,7 +23,6 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do
     context "passwordが送信されない時" do
       let(:params) { attributes_for(:user).slice(:name, :email) }
       it "Userのレコードが作成できない" do
-        # binding.pry
         expect { subject }.to change { User.count }.by(0)
       end
     end
