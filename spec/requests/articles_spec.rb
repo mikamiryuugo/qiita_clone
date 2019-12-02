@@ -17,17 +17,17 @@ RSpec.describe "Articles", type: :request do
   end
 
   describe "POST /api/v1/articles" do
-    subject { post(api_v1_articles_path, params: params) }
+    subject { post(api_v1_articles_path, params: params, headers: headers) }
 
     let(:current_user) { create(:user) }
     let(:params) { { article: attributes_for(:article) } }
-
-    before { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
+    let(:headers) { authentication_headers_for(current_user) }
 
     it "articleのレコードが作成できる" do
-
-      expect { subject }.to change { current_user.articles.count }.by(1)
-      expect(response).to have_http_status(200)
+      aggregate_failures do
+        expect { subject }.to change { current_user.articles.count }.by(1)
+        expect(response).to have_http_status(200)
+      end
     end
   end
 
