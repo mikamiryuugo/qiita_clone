@@ -60,4 +60,27 @@ RSpec.describe "Api::V1::Auth::Sessions", type: :request do
       end
     end
   end
+
+
+  describe "DELETE /api/v1/auth/sign_out" do
+
+    subject { delete(destroy_api_v1_user_session_path, headers: headers) }
+
+    context "ログイン済みのユーザーの情報を送ったとき" do
+      let(:user) { create(:user) }
+      #authentication_headers_for(user)はヘルパー
+      let!(:headers) { authentication_headers_for(user) }
+
+      it "トークン情報が削除される" do
+        aggregate_failures do
+          expect { subject }.to change { user.reload.tokens }.from(be_present).to(be_empty)
+
+          res = JSON.parse(response.body)
+
+          expect(response).to have_http_status(:ok)
+          expect(res["success"]).to be true
+        end
+      end
+    end
+  end
 end
