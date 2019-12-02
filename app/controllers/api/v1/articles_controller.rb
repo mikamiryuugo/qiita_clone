@@ -1,4 +1,4 @@
-class Api::V1::ArticlesController < ApplicationController
+class Api::V1::ArticlesController < Api::V1::BaseApiController
   before_action :set_article, only: [:update, :destroy]
 
   def index
