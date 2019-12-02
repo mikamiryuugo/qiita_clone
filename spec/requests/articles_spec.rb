@@ -42,9 +42,9 @@ RSpec.describe "Articles", type: :request do
       let!(:article) { create(:article, user_id: current_user.id) }
       it "articleのレコードが更新できる" do
         aggregate_failures do
-        expect { subject }.to change { Article.find(article.id).title }.from(article.title).to(params[:article][:title]) &
-                              change { Article.find(article.id).content }.from(article.content).to(params[:article][:content])
-        expect(response).to have_http_status(:ok)
+          expect { subject }.to change { Article.find(article.id).title }.from(article.title).to(params[:article][:title]) &
+                                change { Article.find(article.id).content }.from(article.content).to(params[:article][:content])
+          expect(response).to have_http_status(:ok)
         end
       end
     end
