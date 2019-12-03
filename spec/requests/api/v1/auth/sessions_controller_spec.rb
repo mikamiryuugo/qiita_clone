@@ -6,7 +6,7 @@ RSpec.describe "Api::V1::Auth::Sessions", type: :request do
     let!(:user) {create(:user)}
     let(:params) { { email: user.email, password: user.password } }
     #正常系
-    context do
+    context "ログインしようとするとき" do
       it "トークンを取得できる" do
         subject
         headers = response.headers
@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::Auth::Sessions", type: :request do
     end
 
     #異常系
-    context "送るemailが誤りの時" do
+    context "存在しないメールアドレスを送信したとき" do
       let(:params) { { email: "000_#{Faker::Internet.email}", password: user.password } }
 
       it "トークン情報を取得できない" do
