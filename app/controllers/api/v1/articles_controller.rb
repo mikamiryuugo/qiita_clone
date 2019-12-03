@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Api::V1::ArticlesController < Api::V1::BaseApiController
-  before_action :set_article, only: [:update, :destroy]
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :set_article, only: %i[update destroy]
+  before_action :authenticate_user!, only: %i[create update destroy]
 
   def index
     articles = Article.all
@@ -30,5 +32,4 @@ class Api::V1::ArticlesController < Api::V1::BaseApiController
   def set_article
     @article = current_user.articles.find(params[:id])
   end
-
 end
