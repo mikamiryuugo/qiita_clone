@@ -12,12 +12,15 @@
 <script lang="ts">
 import axios from "axios";
 import { Vue, Component } from "vue-property-decorator";
+
 @Component
 export default class ArticlesComponent extends Vue {
-  articles: String[] = [];
+  articles: string[] = [];
+
   async mounted(): Promise<void> {
     await this.fetchArticles();
   }
+
   async fetchArticles(): Promise<void> {
     await axios.get("/api/v1/articles").then(response => {
       response.data.map((article: any) => {
