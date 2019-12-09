@@ -1,12 +1,12 @@
 <template>
   <form>
     <v-text-field
-      v-model="ユーザー名"
+      v-model="name"
       v-validate="'required|max:10'"
       :counter="10"
       :error-messages="errors.collect('name')"
       label="Name"
-      data-vv-name="name"
+      data-vv-name="ユーザー名"
       required
     ></v-text-field>
     <v-text-field
@@ -43,7 +43,7 @@ import Router from "../router/router";
 Vue.use(VeeValidate, { locale: "ja" });
 
 @Component
-export default class RegisterContainer extends Vue {
+export default class RegisterComponent extends Vue {
   $_veeValidate: {
     validator: "new";
   };

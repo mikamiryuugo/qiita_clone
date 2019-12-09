@@ -12,5 +12,5 @@ document.addEventListener("turbolinks:load", () => {
     components: {
       navbar: Header
     }
-  })
-})
+  });
+});
