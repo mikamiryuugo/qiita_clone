@@ -7,7 +7,7 @@ Vue.use(Vuetify);
 
 document.addEventListener("turbolinks:load", () => {
   new Vue({
-    el: '#app',
+    el: "#app",
     router: Router,
     components: {
       navbar: Header

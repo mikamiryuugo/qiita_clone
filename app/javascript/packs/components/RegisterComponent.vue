@@ -5,8 +5,8 @@
       v-validate="'required|max:10'"
       :counter="10"
       :error-messages="errors.collect('name')"
-      label="Name"
-      data-vv-name="ユーザー名"
+      label="ユーザー名"
+      data-vv-name="name"
       required
     ></v-text-field>
     <v-text-field
@@ -70,7 +70,7 @@ export default class RegisterComponent extends Vue {
 
   async submit(): Promise<void> {
    // this.$validator.validateAll();
-        const params = {
+      const params = {
       name: this.name,
       email: this.email,
       password: this.password
