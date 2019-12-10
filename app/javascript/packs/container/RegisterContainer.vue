@@ -39,15 +39,12 @@ import axios from "axios";
 import { Vue, Component } from "vue-property-decorator";
 import VeeValidate from "vee-validate";
 import Router from "../router/router";
-
 Vue.use(VeeValidate, { locale: "ja" });
-
 @Component
-export default class RegisterComponent extends Vue {
+export default class RegisterContainer extends Vue {
   $_veeValidate: {
     validator: "new";
   };
-
   name: string = "";
   email: string = "";
   show: boolean = false;
@@ -63,28 +60,23 @@ export default class RegisterComponent extends Vue {
       };
     };
   };
-
   mounted() {
     this.$validator.localize("ja", this.dictionary);
   }
-
   async submit(): Promise<void> {
-   // this.$validator.validateAll();
-      const params = {
+    // this.$validator.validateAll();
+    const params = {
       name: this.name,
       email: this.email,
       password: this.password
     };
-
     await axios
       .post("/api/v1/auth", params)
       .then(response => {
         localStorage.setItem("access-token", response.headers["access-token"]);
         localStorage.setItem("uid", response.headers["uid"]);
         localStorage.setItem("client", response.headers["client"]);
-
         Router.push("/");
-
         // TODO: Vuex でログイン状態を管理するようになったら消す
         window.location.reload();
       })

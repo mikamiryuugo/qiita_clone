@@ -5,8 +5,8 @@
       outline
       no-resize
       height="100%"
-      v-model="body"
-      name="body"
+      v-model="content"
+      name="content"
       label="プログラミング知識をMarkdown記法で書いて共有しよう"
       class="body-form"
     ></v-textarea>
@@ -20,7 +20,6 @@
 import axios from "axios";
 import { Vue, Component } from "vue-property-decorator";
 import Router from "../router/router";
-
 const headers = {
   headers: {
     Authorization: "Bearer",
@@ -31,16 +30,14 @@ const headers = {
   }
 };
 @Component
-export default class ArticlesComponent extends Vue {
+export default class ArticlesContainer extends Vue {
   title: string = "";
-  body: string = "";
-
+  content: string = "";
   async createArticle(): Promise<void> {
     const params = {
       title: this.title,
-      body: this.body
+      content: this.content
     };
-
     await axios
       .post("/api/v1/articles", params, headers)
       .then(_response => {
