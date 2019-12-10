@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
   root "homes#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # reload 対策
+  get "sign_up", to: "homes#index"
+  get "sign_in", to: "homes#index"
+
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for "User", at: "auth", controllers: {
