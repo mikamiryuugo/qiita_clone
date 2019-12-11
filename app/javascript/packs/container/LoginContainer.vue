@@ -32,7 +32,7 @@ import VeeValidate from "vee-validate";
 import Router from "../router/router";
 Vue.use(VeeValidate, { locale: "ja" });
 @Component
-export default class RegisterComponent extends Vue {
+export default class RegisterContainer extends Vue {
   $_veeValidate: {
     validator: "new";
   };
