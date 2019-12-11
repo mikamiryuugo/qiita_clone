@@ -9,6 +9,11 @@ class Api::V1::ArticlesController < Api::V1::BaseApiController
     render json: articles
   end
 
+  def show
+    article = Article.find(params[:id])
+    render json: article
+  end
+
   def create
     article = current_user.articles.create!(article_params)
     render json: article
