@@ -18,7 +18,7 @@ RSpec.describe "Articles", type: :request do
         expect(res.length).to eq 3
         expect(res.map {|d| d["id"] }).to eq [article1.id, article2.id, article3.id]
         expect(res[0].keys).to eq ["id", "title","content", "updated_at", "user"]
-        expect(res[0]["user"].keys).to eq ["id", "provider", "uid", "allow_password_change", "name", "nickname", "image", "email", "created_at", "updated_at"]
+        expect(res[0]["user"].keys).to include "id", "name", "email"
       end
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe "Articles", type: :request do
           expect(res["content"]).to eq article.content
           expect(res["updated_at"]).to be_present
           expect(res["user"]["id"]).to eq article.user.id
-          expect(res["user"].keys).to eq ["id", "provider", "uid", "allow_password_change", "name", "nickname", "image", "email", "created_at", "updated_at"]
+          expect(res["user"].keys).to include "id", "name", "email"
         end
       end
     end
