@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root "homes#index"
-  get 'drafts/index', to: "drafts#index"
 
   # reload 対策
   get "sign_up", to: "homes#index"
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
         sessions: "api/v1/auth/sessions",
       }
       resources :articles
+      get 'drafts/index', to: "drafts#index"
     end
   end
 end
