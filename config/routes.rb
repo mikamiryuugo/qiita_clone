@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "homes#index"
+  get 'drafts/index', to: "drafts#index"
 
   # reload 対策
   get "sign_up", to: "homes#index"
