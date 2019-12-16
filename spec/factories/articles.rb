@@ -6,6 +6,6 @@ FactoryBot.define do
   end
 
   trait :with_published_article do
-    status {1}
+    status {:published}
   end
 end
