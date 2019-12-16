@@ -2,7 +2,10 @@ FactoryBot.define do
   factory :article do
     title { Faker::Movie.quote }
     content { Faker::Quote.famous_last_words }
-    status { 0 }
     user
+  end
+
+  trait :with_published_article do
+    status {1}
   end
 end
