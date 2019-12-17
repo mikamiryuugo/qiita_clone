@@ -4,4 +4,8 @@ FactoryBot.define do
     content { Faker::Quote.famous_last_words }
     user
   end
+
+  trait :with_published_article do
+    status {:published}
+  end
 end
