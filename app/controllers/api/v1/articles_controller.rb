@@ -10,8 +10,8 @@ class Api::V1::ArticlesController < Api::V1::BaseApiController
   end
 
   def show
-    article = Article.find(params[:id])
-    render json: article if article.published?
+    article = Article.published.find(params[:id])
+    render json: article
   end
 
   def create
