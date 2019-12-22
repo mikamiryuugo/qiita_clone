@@ -5,7 +5,7 @@ FactoryBot.define do
     user
   end
 
-  trait :with_published_article do
+  trait :published do
     status {:published}
   end
 end

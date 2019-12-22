@@ -4,7 +4,7 @@ RSpec.describe Article, type: :model do
   describe "正常系" do
     let!(:user) {create(:user)}
     let!(:article)  { create(:article, user_id: user.id) }
-    let!(:article2) { create(:article, :with_published_article, user_id: user.id) }
+    let!(:article2) { create(:article, :published, user_id: user.id) }
 
     context "statusカラムの値が「published」のレコードを検索した時" do
       it "公開記事が返される" do

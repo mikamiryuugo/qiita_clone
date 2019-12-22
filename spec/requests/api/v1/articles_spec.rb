@@ -4,9 +4,9 @@ RSpec.describe "Articles", type: :request do
   describe "GET /articles" do
     subject { get(api_v1_articles_path) }
 
-    let!(:article1) { create(:article, :with_published_article, updated_at: 1.days.ago) }
-    let!(:article2) { create(:article, :with_published_article, updated_at: 2.days.ago) }
-    let!(:article3) { create(:article, :with_published_article) }
+    let!(:article1) { create(:article, :published, updated_at: 1.days.ago) }
+    let!(:article2) { create(:article, :published, updated_at: 2.days.ago) }
+    let!(:article3) { create(:article, :published) }
     it "記事の一覧が取得できる(更新順)" do
       subject
 
@@ -26,7 +26,7 @@ RSpec.describe "Articles", type: :request do
     subject { get(api_v1_article_path(article_id)) }
 
     context "指定した id の記事が存在する場合" do
-      let(:article) { create(:article, :with_published_article) }
+      let(:article) { create(:article, :published) }
       let(:article_id) { article.id }
 
       it "任意の記事の値が取得できる" do
