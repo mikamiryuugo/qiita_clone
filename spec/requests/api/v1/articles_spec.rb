@@ -4,9 +4,9 @@ RSpec.describe "Articles", type: :request do
   describe "GET /articles" do
     subject { get(api_v1_articles_path) }
 
-    let!(:article1) { FactoryBot.create(:article, :with_published_article, updated_at: 1.days.ago) }
-    let!(:article2) { FactoryBot.create(:article, :with_published_article, updated_at: 2.days.ago) }
-    let!(:article3) { FactoryBot.create(:article, :with_published_article) }
+    let!(:article1) { create(:article, :with_published_article, updated_at: 1.days.ago) }
+    let!(:article2) { create(:article, :with_published_article, updated_at: 2.days.ago) }
+    let!(:article3) { create(:article, :with_published_article) }
     it "記事の一覧が取得できる(更新順)" do
       subject
 
