@@ -5,7 +5,7 @@ RSpec.describe "Drafts", type: :request do
     let!(:user) {create(:user)}
     let!(:article)  { create(:article, user_id: user.id) }
     let!(:article2) { create(:article, user_id: user.id) }
-    let!(:article3) { create(:article, status: 1, user_id: user.id) }
+    let!(:article3) { create(:article, :with_published_article, user_id: user.id) }
 
     context "ログインしている時" do
 
@@ -25,7 +25,7 @@ RSpec.describe "Drafts", type: :request do
         end
 
         get (api_v1_drafts_index_path)
-        expect(user.articles.where(status: 0).count).to eq 2
+        expect(user.articles.draft.count).to eq 2
       end
     end
 
