@@ -14,7 +14,10 @@ Rails.application.routes.draw do
         sessions: "api/v1/auth/sessions",
       }
       resources :articles
-      resources :drafts
+      namespace :articles do
+        get "draft", to: "drafts#index"
+        get "draft/:id", to: "drafts#show"
+      end
     end
   end
 end
