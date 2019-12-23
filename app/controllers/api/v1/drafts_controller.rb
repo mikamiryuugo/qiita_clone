@@ -6,5 +6,9 @@ class Api::V1::DraftsController < Api::V1::BaseApiController
     render json: articles
   end
 
+  def show
+    article = Article.draft.find(params[:id])
+    render json: article
+  end
 
 end
