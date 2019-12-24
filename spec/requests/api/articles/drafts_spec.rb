@@ -24,14 +24,14 @@ RSpec.describe "Drafts", type: :request do
           expect(headers["token-type"]).to be_present
         end
 
-        get (api_v1_drafts_index_path)
+        get(api_v1_articles_draft_path)
         expect(user.articles.draft.count).to eq 2
       end
     end
 
     context "ログインしていない時" do
       it "下書き記事の一覧が取得できない" do
-        get (api_v1_drafts_index_path)
+        get (api_v1_articles_draft_path)
         expect(response).to have_http_status(401)
       end
     end
