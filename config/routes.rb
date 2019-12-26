@@ -13,11 +13,10 @@ Rails.application.routes.draw do
         registrations: "api/v1/auth/registrations",
         sessions: "api/v1/auth/sessions",
       }
-      resources :articles
       namespace :articles do
-        get "draft", to: "drafts#index"
-        get "draft/:id", to: "drafts#show"
+        resources :drafts, only: [:index, :show]
       end
+      resources :articles
     end
   end
 end
