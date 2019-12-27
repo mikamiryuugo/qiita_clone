@@ -24,7 +24,7 @@ RSpec.describe "Drafts", type: :request do
   end
 
   describe "GET /drafts/:id" do
-    let(:article_id) {article.id}
+    let(:article_id) {article1.id}
 
     context "ログインしている時" do
       it "下書き詳細記事が取得できる" do
@@ -34,11 +34,11 @@ RSpec.describe "Drafts", type: :request do
 
         aggregate_failures do
           expect(response).to have_http_status(:ok)
-          expect(res["id"]).to eq article.id
-          expect(res["title"]).to eq article.title
-          expect(res["content"]).to eq article.content
+          expect(res["id"]).to eq article1.id
+          expect(res["title"]).to eq article1.title
+          expect(res["content"]).to eq article1.content
           expect(res["updated_at"]).to be_present
-          expect(res["user"]["id"]).to eq article.user.id
+          expect(res["user"]["id"]).to eq article1.user.id
           expect(res["user"].keys).to include "id", "name", "email"
         end
       end
