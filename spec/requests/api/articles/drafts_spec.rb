@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Drafts", type: :request do
   let!(:user) {create(:user)}
-  let!(:article)  { create(:article, user_id: user.id) }
+  let!(:article1)  { create(:article, user_id: user.id) }
   let!(:article2) { create(:article, user_id: user.id) }
   let!(:article3) { create(:article, :published, user_id: user.id) }
   let(:headers) { authentication_headers_for(user) }
