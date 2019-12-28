@@ -11,7 +11,7 @@
         label="プログラミング知識をMarkdown記法で書いて共有しよう"
         class="body-form"
       ></v-textarea>
-      <div v-html="compiledMarkdown(this.body)" class="preview">a</div>
+      <div v-html="compiledMarkdown(this.content)" class="preview">a</div>
     </div>
     <div class="text-xs-right">
       <v-btn
