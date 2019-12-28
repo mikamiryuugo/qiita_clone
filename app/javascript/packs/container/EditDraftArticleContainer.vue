@@ -6,8 +6,8 @@
         outline
         no-resize
         height="100%"
-        v-model="body"
-        name="body"
+        v-model="content"
+        name="content"
         label="プログラミング知識をMarkdown記法で書いて共有しよう"
         class="body-form"
       ></v-textarea>
@@ -47,7 +47,7 @@ const headers = {
 export default class EditDraftArticleContainer extends Vue {
   id: string = "";
   title: string = "";
-  body: string = "";
+  content: string = "";
   async mounted(): Promise<void> {
     if (this.$route.params.id) {
       await this.fetchArticle(this.$route.params.id);
@@ -83,7 +83,7 @@ export default class EditDraftArticleContainer extends Vue {
       .then(response => {
         this.id = response.data.id;
         this.title = response.data.title;
-        this.body = response.data.body;
+        this.content = response.data.content;
       })
       .catch(e => {
         // TODO: 適切な Error 表示
@@ -97,7 +97,7 @@ export default class EditDraftArticleContainer extends Vue {
     }
     const params = {
       title: this.title,
-      body: this.body,
+      content: this.content,
       status: Statuses[status]
     };
     if (this.id) {
