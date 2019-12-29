@@ -112,7 +112,11 @@ export default class ArticlesContainer extends Vue {
         .patch(`/api/v1/articles/${this.id}`, params, headers)
         .then(_response => {
           // TODO: 下書きの場合は下書き一覧ページに飛ばす
-          Router.push("/");
+          if (status == Statuses["published"]) {
+            Router.push("/");
+          } else {
+            Router.push("/articles/drafts");
+          }
         })
         .catch(e => {
           // TODO: 適切な Error 表示
@@ -124,7 +128,11 @@ export default class ArticlesContainer extends Vue {
         .post("/api/v1/articles", params, headers)
         .then(_response => {
           // TODO: 下書きの場合は下書き一覧ページに飛ばす
-          Router.push("/");
+          if (status == Statuses["published"]) {
+            Router.push("/");
+          } else {
+            Router.push("/articles/drafts");
+          }
         })
         .catch(e => {
           // TODO: 適切な Error 表示
